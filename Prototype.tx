@@ -1,0 +1,21 @@
+Press on Health tab
+ - path from tab bar (Bottom Tab Navigators)
+Displays previous BMI data
+ - for past 7 records 
+ - Present in Bar graph (BMI/Date) 
+
+A button to add new data for today below the graph (Stack Navigator)
+    pop navigate()
+    (Auto Fill the previous data)
+    -Date
+    -Weight
+    -Height
+    push goBack()
+
+System calculates BMI
+    - BMI = Weiht / Height**
+    
+Stores Weight, Height, BMI, Date, in Health.db
+
+Bring user back to the health data page
+    - Update Graph
