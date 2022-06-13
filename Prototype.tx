@@ -13,7 +13,7 @@ A button to add new data for today below the graph (Stack Navigator)
     push goBack()
 
 System calculates BMI
-    - BMI = Weiht / Height**
+    - BMI = Weight / Height**
     
 Stores Weight, Height, BMI, Date, in Health.db
 
