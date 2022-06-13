@@ -2,6 +2,7 @@ import React, { useEffect, useState} from "react";
 import { Text, View, Button, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import * as SQlite from "expo-sqlite";
 import { Ionicons } from '@expo/vector-icons';
+import AddHealthData from "./AddHealthData";
 
 const db = SQlite.openDatabase("health.db");
 

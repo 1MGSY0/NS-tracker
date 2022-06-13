@@ -32,7 +32,25 @@ export default function App() {
           }
         }}
         />
-        <Stack.Screen name="Add" component={AddHealthData} />
+        <Stack.Screen
+        name="Add" 
+        component={AddHealthData}
+        options={{
+          title:"Add New Record",
+          headerTintColor: 'white',
+          headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 30,
+              color: 'white'
+          },
+          headerStyle: {
+              backgroundColor: '#1E1E1E',
+              height: 100,
+              borderBottomWidth: 5,
+              borderBottomColor: 'lightgreen',
+          }
+        }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
