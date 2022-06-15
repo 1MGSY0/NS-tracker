@@ -1,57 +1,116 @@
-//extension
-import * as React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack';
+import * as React from "react";
+import { Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HealthDataPage from "./HealthPage/HealthDataPage";
+import FitnessScreen from "./FitnessPage/FitnessScreen";
+import { FontAwesome, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 
-//Other Page
-import AddHealthData from './Screens/AddHealthData';
-import HealthDataPage from './Screens/HealthDataPage';
+function HomeScreen() {
+  return (<Text>HomeScreen</Text>);
+}
 
-const Stack = createStackNavigator();
+function CalenderNav() {
+  return (<Text>Calender screen</Text>);
+}
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
-        name="HomePage" 
-        component={HealthDataPage}
-        options={{
-          title:"Your Health Record",
-          headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: 30,
-              color: 'white'
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            let color = focused ? "lightgreen": "grey";
+            if (route.name === "Home") {
+              return (<FontAwesome name="home" size={24} color={color} />);
+            } else if (route.name === "Calender") {
+              return (<FontAwesome name="calendar" size={24} color={color} />);
+            } else if (route.name === "Health") {
+              return (<Entypo name= "bar-graph" size={24} color={color} />);
+            } else if (route.name === "FitnessPageNav") {
+              iconName = focused ? "arm-flex" : "arm-flex-outline";
+              return (<MaterialCommunityIcons name={iconName} size={24} color={color} />);
+            }
           },
-          headerStyle: {
-              backgroundColor: '#1E1E1E',
-              height: 100,
-              borderBottomWidth: 5,
-              borderBottomColor: 'lightgreen',
-          }
-        }}
-        />
-        <Stack.Screen
-        name="Add" 
-        component={AddHealthData}
+          tabBarActiveTintColor: "lightgreen",
+          tabBarInactiveTintColor: "grey",
+          tabBarActiveBackgroundColor: "#1E1E1E",
+          tabBarInactiveBackgroundColor: "#323232",
+        })}
+      >
+        <Tab.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{
+                title:"Home",
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 30,
+                    color: 'white'
+                },
+                headerStyle: {
+                    backgroundColor: '#1E1E1E',
+                    height: 100,
+                    borderBottomWidth: 5,
+                    borderBottomColor: 'lightgreen',
+                }
+              }} />
+        <Tab.Screen 
+        name="Calender" 
+        component={CalenderNav} 
         options={{
-          title:"Add New Record",
-          headerTintColor: 'white',
-          headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: 30,
-              color: 'white'
-          },
-          headerStyle: {
-              backgroundColor: '#1E1E1E',
-              height: 100,
-              borderBottomWidth: 5,
-              borderBottomColor: 'lightgreen',
-          }
-        }}
-        />
-      </Stack.Navigator>
+                title:"Home",
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 30,
+                    color: 'white'
+                },
+                headerStyle: {
+                    backgroundColor: '#1E1E1E',
+                    height: 100,
+                    borderBottomWidth: 5,
+                    borderBottomColor: 'lightgreen',
+                }
+              }}/>
+        <Tab.Screen 
+          name="Health" 
+          component={HealthDataPage}
+          options={{
+              title:"Your Health Record",
+              headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 30,
+                  color: 'white'
+              },
+              headerStyle: {
+                  backgroundColor: '#1E1E1E',
+                  height: 100,
+                  borderBottomWidth: 5,
+                  borderBottomColor: 'lightgreen',
+              }
+            }}
+          />
+        <Tab.Screen 
+        name="FitnessPageNav" 
+        component={FitnessScreen} 
+        options={{
+              title:"Fitness",
+              headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 30,
+                  color: 'white'
+              },
+              headerStyle: {
+                  backgroundColor: '#1E1E1E',
+                  height: 100,
+                  borderBottomWidth: 5,
+                  borderBottomColor: 'lightgreen',
+              }
+            }}/>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
